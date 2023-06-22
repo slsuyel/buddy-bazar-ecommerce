@@ -106,7 +106,7 @@ const Dashboard = () => {
                                     role="tabpanel"
                                 >
                                     <div className="dashboard-content">
-                                       
+
                                         <p>
                                             From your account dashboard you can view your
                                             <a className="btn btn-link link-to-tab" href="#order">
@@ -184,10 +184,10 @@ const Dashboard = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        {/* End .row */}
+
                                     </div>
                                 </div>
-                                {/* End .tab-pane */}
+
                                 <div className="tab-pane fade" id="order" role="tabpanel">
                                     <div className="order-content">
                                         <h3 className="account-sub-title d-none d-md-block">
@@ -222,7 +222,7 @@ const Dashboard = () => {
                                         </div>
                                     </div>
                                 </div>
-                                {/* End .tab-pane */}
+
                                 <div className="tab-pane fade" id="download" role="tabpanel">
                                     <div className="download-content">
                                         <h3 className="account-sub-title d-none d-md-block">
@@ -240,7 +240,7 @@ const Dashboard = () => {
                                         </div>
                                     </div>
                                 </div>
-                                {/* End .tab-pane */}
+
                                 <div className="tab-pane fade" id="address" role="tabpanel">
                                     <h3 className="account-sub-title d-none d-md-block mb-1">
                                         <i className="sicon-location-pin align-middle mr-3" />
@@ -283,7 +283,7 @@ const Dashboard = () => {
                                         </div>
                                     </div>
                                 </div>
-                                {/* End .tab-pane */}
+
                                 <div className="tab-pane fade" id="edit" role="tabpanel">
                                     <h3 className="account-sub-title d-none d-md-block mt-0 pt-1 ml-1">
                                         <i className="icon-user-2 align-middle mr-3 pr-1" />
@@ -394,7 +394,7 @@ const Dashboard = () => {
                                         </form>
                                     </div>
                                 </div>
-                                {/* End .tab-pane */}
+
                                 <div className="tab-pane fade" id="billing" role="tabpanel">
                                     <div className="address account-content mt-0 pt-2">
                                         <h4 className="title">Billing address</h4>
@@ -506,7 +506,7 @@ const Dashboard = () => {
                                         </form>
                                     </div>
                                 </div>
-                                {/* End .tab-pane */}
+
                                 <div className="tab-pane fade" id="shipping" role="tabpanel">
                                     <div className="address account-content mt-0 pt-2">
                                         <h4 className="title mb-3">Shipping Address</h4>
@@ -601,21 +601,21 @@ const Dashboard = () => {
                                         </form>
                                     </div>
                                 </div>
-                                {/* End .tab-pane */}
+
                             </div>
-                            {/* End .tab-content */}
+
                         </div>
-                        {/* End .row */}
+
                     </div>
-                    {/* End .container */}
+
                     <div className="mb-5" />
-                    {/* margin */}
+
                 </main>
-                {/* End .main */}
+
             </div>
-            {/* End .page-wrapper */}
+
             <div className="mobile-menu-overlay" />
-            {/* End .mobil-menu-overlay */}
+
             <div className="mobile-menu-container">
                 <div className="mobile-menu-wrapper">
                     <span className="mobile-menu-close">
@@ -876,7 +876,7 @@ const Dashboard = () => {
                             </li>
                         </ul>
                     </nav>
-                    {/* End .mobile-nav */}
+
                     <form className="search-wrapper mb-2" action="#">
                         <input
                             type="text"
@@ -907,9 +907,9 @@ const Dashboard = () => {
                         ></a>
                     </div>
                 </div>
-                {/* End .mobile-menu-wrapper */}
+
             </div>
-            {/* End .mobile-menu-container */}
+
             <div className="sticky-navbar">
                 <div className="sticky-info">
                     <a href="demo4.html">

@@ -1,0 +1,219 @@
+[
+    {
+        "name": "Product D",
+        "_id": "gsgf545544",
+        "description": "A sleek and compact device for on-the-go productivity.",
+        "rating": 4.0,
+        "SKU": "SKU987",
+        "category": "Electronics",
+        "status": "feature",
+        "tags": [
+            "gadgets",
+            "tech",
+            "office"
+        ],
+        "price": 79.99,
+        "discounts": 4,
+        "image1": "https://images.unsplash.com/photo-1598532163257-ae3c6b2524b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmFnc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        "image2": "https://images.unsplash.com/photo-1559563458-527698bf5295?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
+    },
+    {
+        "name": "Product E",
+        "_id": "gsgf545f544",
+        "description": "Soft and comfortable fabric ideal for lounging at home.",
+        "rating": 4.8,
+        "SKU": "SKU654",
+        "category": "Fashion",
+        "status": "feature",
+        "tags": [
+            "clothing",
+            "comfort",
+            "relaxation"
+        ],
+        "price": 39.99,
+        "discounts": 7,
+        "image1": "https://images.unsplash.com/photo-1559563458-527698bf5295?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+        "image2": "https://images.unsplash.com/photo-1598532163257-ae3c6b2524b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmFnc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
+    },
+    {
+        "name": "Product F",
+        "_id": "gsgf5ff45544",
+        "description": "Experience high-quality sound with these wireless headphones.",
+        "rating": 4.5,
+        "SKU": "SKU321",
+        "category": "Electronics",
+        "status": "feature",
+        "tags": [
+            "audio",
+            "music",
+            "wireless"
+        ],
+        "price": 99.99,
+        "discounts": 2,
+        "image1": "https://images.unsplash.com/photo-1559563458-527698bf5295?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+        "image2": "https://images.unsplash.com/photo-1598532163257-ae3c6b2524b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmFnc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
+    },
+    {
+        "name": "Product G",
+        "_id": "gsdsfsdgf545544",
+        "description": "A classic timepiece with a sophisticated design.",
+        "rating": 4.3,
+        "SKU": "SKU159",
+        "category": "Fashion",
+        "status": "top-rated",
+        "tags": [
+            "watches",
+            "accessories",
+            "style"
+        ],
+        "price": 149.99,
+        "discounts": 5,
+        "image1": "https://images.unsplash.com/photo-1598532163257-ae3c6b2524b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmFnc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        "image2": "https://images.unsplash.com/photo-1559563458-527698bf5295?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
+    },
+    {
+        "name": "Product H",
+        "_id": "gsdfsdsgf545544",
+        "description": "Enhance your gaming experience with this powerful console.",
+        "rating": 4.7,
+        "SKU": "SKU753",
+        "category": "Electronics",
+        "status": "best-seller",
+        "tags": [
+            "gaming",
+            "entertainment",
+            "console"
+        ],
+        "price": 299.99,
+        "discounts": 8,
+        "image1": "https://images.unsplash.com/photo-1559563458-527698bf5295?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+        "image2": "https://images.unsplash.com/photo-1598532163257-ae3c6b2524b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmFnc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
+    },
+    {
+        "name": "Product I",
+        "_id": "gsgf5455df544",
+        "description": "Create professional-quality photos with this versatile camera.",
+        "rating": 4.6,
+        "SKU": "SKU852",
+        "category": "Electronics",
+        "status": "feature",
+        "tags": [
+            "photography",
+            "cameras",
+            "technology"
+        ],
+        "price": 499.99,
+        "discounts": 1,
+        "image1": "https://ericaandjon.com/wp-content/uploads/2020/09/Commercial-Brand-Photographer-in-Arizona-Phoenix-AZ-ericaandjon.com_0107.jpg",
+        "image2": "https://images.unsplash.com/photo-1559563458-527698bf5295?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
+    },
+    {
+        "name": "Product J",
+        "_id": "gdsdssssssgf545544",
+        "description": "Add a touch of elegance to your dining experience.",
+        "rating": 4.4,
+        "SKU": "SKU369",
+        "status": "top-rated",
+        "category": "Home & Garden",
+        "tags": [
+            "dining",
+            "tableware",
+            "kitchen"
+        ],
+        "price": 19.99,
+        "discounts": 9,
+        "image1": "https://images.unsplash.com/photo-1559563458-527698bf5295?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+        "image2": "https://ericaandjon.com/wp-content/uploads/2020/09/Commercial-Brand-Photographer-in-Arizona-Phoenix-AZ-ericaandjon.com_0107.jpg"
+    },
+    {
+        "name": "Product K",
+        "_id": "gsgf54554sdsdf554",
+        "description": "Stay organized with this stylish and functional backpack.",
+        "rating": 4.1,
+        "SKU": "SKU258",
+        "category": "Fashion",
+        "status": "top-rated",
+        "tags": [
+            "bags",
+            "travel",
+            "accessories"
+        ],
+        "price": 59.99,
+        "discounts": 3,
+        "image1": "https://ericaandjon.com/wp-content/uploads/2020/09/Commercial-Brand-Photographer-in-Arizona-Phoenix-AZ-ericaandjon.com_0107.jpg",
+        "image2": "https://images.unsplash.com/photo-1598532163257-ae3c6b2524b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmFnc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
+    },
+    {
+        "name": "Product L",
+        "_id": "gsgf5455ss44",
+        "description": "Keep your home clean and fresh with this powerful vacuum cleaner.",
+        "rating": 4.9,
+        "SKU": "SKU147",
+        "status": "latest",
+        "category": "Home & Garden",
+        "tags": [
+            "cleaning",
+            "home appliances",
+            "efficiency"
+        ],
+        "price": 149.99,
+        "discounts": 6,
+        "image1": "https://images.unsplash.com/photo-1598532163257-ae3c6b2524b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmFnc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        "image2": "https://images.unsplash.com/photo-1559563458-527698bf5295?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
+    },
+    {
+        "name": "Product M",
+        "_id": "asdgsgf545544",
+        "description": "Improve your fitness routine with this high-performance sports watch.",
+        "rating": 4.7,
+        "SKU": "SKU963",
+        "status": "latest",
+        "category": "Sports & Outdoors",
+        "tags": [
+            "fitness",
+            "health",
+            "wearables"
+        ],
+        "price": 129.99,
+        "discounts": 4,
+        "image1": "https://images.unsplash.com/photo-1559563458-527698bf5295?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+        "image2": "https://static-01.daraz.com.bd/p/929a0ae6761f74411dfa6b897ffa426c.jpg"
+    },
+    {
+        "name": "Product M",
+        "_id": "asdgsgf545544",
+        "description": "Improve your fitness routine with this high-performance sports watch.",
+        "rating": 4.7,
+        "SKU": "SKU963",
+        
+        "category": "Sports & Outdoors",
+        "tags": [
+            "fitness",
+            "health",
+            "wearables"
+        ],
+        "price": 129.99,
+        "status": "latest",
+        "discounts": 4,
+        "image1": "https://static-01.daraz.com.bd/p/929a0ae6761f74411dfa6b897ffa426c.jpg",
+        "image2": "https://static-01.daraz.com.bd/p/929a0ae6761f74411dfa6b897ffa426c.jpg"
+    },
+    {
+        "name": "Product X",
+        "_id": "dfgdfg454546",
+        "description": "Stay hydrated during your outdoor adventures with this durable water bottle.",
+        "rating": 4.5,
+        "SKU": "SKU789",
+        "category": "Sports & Outdoors",
+        "tags": [
+            "outdoor",
+            "hydration",
+            "travel"
+        ],
+        "price": 19.99,
+        "status": "best-seller",
+        "discounts": 2,
+        "image1": "https://static-01.daraz.com.bd/p/929a0ae6761f74411dfa6b897ffa426c.jpg",
+        "image2": "https://static-01.daraz.com.bd/p/929a0ae6761f74411dfa6b897ffa426c.jpg"
+    }
+]

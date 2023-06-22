@@ -15,7 +15,7 @@ const Header = () => {
                 <div className="header-menu">
                   <ul>
                     <li>
-                      <a href="dashboard.html">My Account</a>
+                      <Link to="/dashboard">My Account</Link>
                     </li>
                     <li>
                       <a href="demo1-contact.html">Contact Us</a>
@@ -27,13 +27,13 @@ const Header = () => {
                       <a href="#">Site Map</a>
                     </li>
                     <li>
-                    
+
                       <Link to='cart'>Cart</Link>
                     </li>
                     <li>
-                      <a href="#" className="login-link">
+                      <Link to='/' className="login-link">
                         Log In
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -59,9 +59,9 @@ const Header = () => {
               <button className="mobile-menu-toggler mr-2" type="button">
                 <i className="fas fa-bars"></i>
               </button>
-              <a href="/" className="logo">
+              <Link to="/" className="logo">
                 <img src="https://www.portotheme.com/wordpress/porto/shop1-soft/wp-content/uploads/sites/127/2022/08/Logo.png" width="111" height="44" alt="Porto Logo" />
-              </a>
+              </Link>
 
 
             </div>
@@ -106,8 +106,6 @@ const Header = () => {
                 <i className="fa-solid fa-phone-volume"></i>
                 <h6 className="pt-1 line-height-1">Call us now<a href="tel:#" className="d-block text-dark ls-10 pt-1">+123 5678 890</a></h6>
               </div>
-
-
               <Link to='/dashboard' className="header-icon header-icon-user">
                 <i className="fa-solid fa-user"></i>
               </Link>

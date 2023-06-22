@@ -1,23 +1,11 @@
+import useAllproducts from "../../hooks/useAllproducts";
 
 const Category = () => {
+    const [allProducts] = useAllproducts()
+    console.log(allProducts);
     return (
         <main className="main">
             <div className="container">
-                <nav aria-label="breadcrumb" className="breadcrumb-nav">
-                    <ol className="breadcrumb">
-                        <li className="breadcrumb-item">
-                            <a href="demo4.html">
-                                <i className="icon-home" />
-                            </a>
-                        </li>
-                        <li className="breadcrumb-item">
-                            <a href="#">Men</a>
-                        </li>
-                        <li className="breadcrumb-item active" aria-current="page">
-                            Accessories
-                        </li>
-                    </ol>
-                </nav>
                 <div className="row">
                     <div className="col-lg-9">
                         <nav
