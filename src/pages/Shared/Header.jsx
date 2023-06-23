@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import CartSideBar from "../Product/CartSideBar";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProviders";
-const Header = () => {
 
-  const { logOut, user } = useContext(AuthContext);
-  console.log(user);
+const Header = () => {
+  const { logOut } = useContext(AuthContext);
+
   const logoutBtn = () => {
     logOut();
   };

@@ -1,16 +1,74 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAllproducts from "../../hooks/useAllproducts";
+import Swal from "sweetalert2";
+import { useContext } from "react";
+import { AuthContext } from "../../provider/AuthProviders";
+import { baseUrl } from "../../baseUrl/baseUrl";
+import useCart from "../../hooks/useCart";
 
 const Featured = () => {
+    const [, refetch,] = useCart()
+    const { user } = useContext(AuthContext);
+    // console.log(user);
+    const navigate = useNavigate();
     const [allProducts, , isLoading] = useAllproducts()
 
     if (isLoading) {
         <div>Loding....</div>
     }
-
-
-
     const featuredProducts = allProducts.filter((product) => product.status === 'feature');
+
+    /* ------------ */
+    const handleAddToCart = (product) => {
+        if (user && user?.email) {
+            const cartProducts = {
+                email: user.email,
+                cartId: product._id,
+                productName: product.name,
+                image: product.image1,
+                price: product.price
+            };
+            // console.log(selectedClass);
+
+            fetch(`${baseUrl}/carts`, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify(cartProducts)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.insertedId) {
+                        refetch()
+                        Swal.fire({
+                            position: 'top-start',
+                            icon: 'success',
+                            title: 'Product added to cart successfully',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                })
+        } else {
+            navigate('/login');
+        }
+    };
+
+    // if (user) {
+    //     return <div className="text-center mt-5"><Button variant="primary" disabled >
+    //         <Spinner
+    //             as="span"
+    //             animation="grow"
+    //             size="sm"
+    //             role="status"
+    //             aria-hidden="true"
+    //         />
+    //         Loading...
+    //     </Button></div>
+    // }
+
+
     return (
         <div className="mt-4">
             <h2 className="my-2">Featured Products</h2>
@@ -49,7 +107,7 @@ const Featured = () => {
                                             {feature?.category}
                                         </a>
                                     </div>
-                                    <button title="Add to cart" className="btn fs-3 text-danger"
+                                    <button onClick={() => { handleAddToCart(feature) }} title="Add to cart" className="btn fs-3 text-danger"
                                     >
                                         <i className="fa-solid fa-cart-shopping"></i>
                                     </button>

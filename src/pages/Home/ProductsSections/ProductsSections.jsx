@@ -12,7 +12,7 @@ const ProductsSections = () => {
     const bestSeller = allProducts.filter((product) => product.status === 'best-seller');
     const latest = allProducts.filter((product) => product.status === 'latest');
 
-    console.log(topRated);
+    // console.log(topRated);
 
     return (
         <div className="border-bottom mb-5 mt-4 pb-4 py-2 row">

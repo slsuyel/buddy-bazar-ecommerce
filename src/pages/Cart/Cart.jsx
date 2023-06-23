@@ -1,5 +1,37 @@
+import { Link } from "react-router-dom";
+import useCart from "../../hooks/useCart";
+import { baseUrl } from "../../baseUrl/baseUrl";
+import Swal from "sweetalert2";
 
 const Cart = () => {
+    const [cart, refetch,] = useCart()
+    const total = cart.reduce((ac, item) => ac + item.price, 0).toFixed(2);
+
+
+    const removeCart = (id) => {
+        fetch(`${baseUrl}/carts/${id}`, {
+            method: 'DELETE'
+        })
+            .then(response => {
+                if (response) {
+                    Swal.fire({
+                        position: 'top-start',
+                        icon: 'success',
+                        title: 'Product Remove from the cart',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    refetch()
+                    // console.log(response);
+                } else {
+                    // Handle error response
+                    throw new Error('Error deleting cart item.');
+                }
+            })
+
+    }
+
+
     return (
         <>
             <div className="page-wrapper container mx-auto">
@@ -7,122 +39,59 @@ const Cart = () => {
                     <div className="row">
                         <div className="col-lg-8">
                             <div className="cart-table-container">
-                                <table className="table table-cart">
+                                <table className="fs-5 table table-cart">
                                     <thead>
                                         <tr>
                                             <th className="thumbnail-col" />
                                             <th className="product-col">Product</th>
                                             <th className="price-col">Price</th>
-                                            <th className="qty-col">Quantity</th>
+                                            <th className="qty-col text-center">vat/tax</th>
                                             <th className="text-right">Subtotal</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr className="product-row">
-                                            <td>
-                                                <figure className="product-image-container">
-                                                    <a href="product.html" className="product-image">
-                                                        <img
-                                                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPz1tTvA90I2RIWYYeisa-rm_LQzx-wpEYeMx9kzuKlk9qXMmF8bj9rDTJAyvb-yf5HV4&usqp=CAU"
-                                                            alt="product"
-                                                        />
-                                                    </a>
-                                                    <a
-                                                        href="#"
-                                                        className="btn-remove icon-cancel"
-                                                        title="Remove Product"
-                                                    />
-                                                </figure>
-                                            </td>
-                                            <td className="product-col">
-                                                <h5 className="product-title">
-                                                    <a href="product.html">Men Watch</a>
-                                                </h5>
-                                            </td>
-                                            <td>$17.90</td>
-                                            <td>
-                                                <div className="product-single-qty">
-                                                    <input
-                                                        className="horizontal-quantity form-control"
-                                                        type="text"
-                                                    />
-                                                </div>
-                                                {/* End .product-single-qty */}
-                                            </td>
-                                            <td className="text-right">
-                                                <span className="subtotal-price">$17.90</span>
-                                            </td>
-                                        </tr>
-                                        <tr className="product-row">
-                                            <td>
-                                                <figure className="product-image-container">
-                                                    <a href="product.html" className="product-image">
-                                                        <img
-                                                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPz1tTvA90I2RIWYYeisa-rm_LQzx-wpEYeMx9kzuKlk9qXMmF8bj9rDTJAyvb-yf5HV4&usqp=CAU"
-                                                            alt="product"
-                                                        />
-                                                    </a>
-                                                    <a
-                                                        href="#"
-                                                        className="btn-remove icon-cancel"
-                                                        title="Remove Product"
-                                                    />
-                                                </figure>
-                                            </td>
-                                            <td className="product-col">
-                                                <h5 className="product-title">
-                                                    <a href="product.html">Men Watch</a>
-                                                </h5>
-                                            </td>
-                                            <td>$17.90</td>
-                                            <td>
-                                                <div className="product-single-qty">
-                                                    <input
-                                                        className="horizontal-quantity form-control"
-                                                        type="text"
-                                                    />
-                                                </div>
-                                                {/* End .product-single-qty */}
-                                            </td>
-                                            <td className="text-right">
-                                                <span className="subtotal-price">$17.90</span>
-                                            </td>
-                                        </tr>
-                                        <tr className="product-row">
-                                            <td>
-                                                <figure className="product-image-container">
-                                                    <a href="product.html" className="product-image">
-                                                        <img
-                                                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPz1tTvA90I2RIWYYeisa-rm_LQzx-wpEYeMx9kzuKlk9qXMmF8bj9rDTJAyvb-yf5HV4&usqp=CAU"
-                                                            alt="product"
-                                                        />
-                                                    </a>
-                                                    <a
-                                                        href="#"
-                                                        className="btn-remove icon-cancel"
-                                                        title="Remove Product"
-                                                    />
-                                                </figure>
-                                            </td>
-                                            <td className="product-col">
-                                                <h5 className="product-title">
-                                                    <a href="product.html">Men Black Gentle Belt</a>
-                                                </h5>
-                                            </td>
-                                            <td>$17.90</td>
-                                            <td>
-                                                <div className="product-single-qty">
-                                                    <input
-                                                        className="horizontal-quantity form-control"
-                                                        type="text"
-                                                    />
-                                                </div>
-                                                {/* End .product-single-qty */}
-                                            </td>
-                                            <td className="text-right">
-                                                <span className="subtotal-price">$17.90</span>
-                                            </td>
-                                        </tr>
+                                        {
+                                            cart.map(product => (
+                                                <tr className="product-row" key={product.cartId}>
+                                                    <td>
+                                                        <figure className="product-image-container">
+                                                            <Link to={`/product/${product.cartId}`} className="product-image">
+                                                                <img
+                                                                    src={product.image}
+                                                                    alt="product"
+                                                                />
+                                                            </Link>
+                                                            <a onClick={() => { removeCart(product._id) }}
+                                                                href="#"
+                                                                className="btn-remove icon-cancel"
+                                                                title="Remove Product"
+                                                            />
+
+
+
+
+                                                        </figure>
+                                                    </td>
+                                                    <td className="product-col">
+                                                        <h5 className="product-title">
+
+                                                            <Link to={`/product/${product.cartId}`}>
+                                                                {product.productName}
+                                                            </Link>
+                                                        </h5>
+                                                    </td>
+                                                    <td>${product.price}</td>
+                                                    <td className="text-center">
+                                                        00
+                                                    </td>
+                                                    <td className="text-right">
+                                                        <span className="subtotal-price">${product.price}</span>
+                                                    </td>
+                                                </tr>
+                                            ))
+                                        }
+
+
                                     </tbody>
                                     <tfoot>
                                         <tr>
@@ -171,106 +140,42 @@ const Cart = () => {
                                 <table className="table table-totals">
                                     <tbody>
                                         <tr>
-                                            <td>Subtotal</td>
-                                            <td>$17.90</td>
+                                            <td>Total </td>
+                                            <td>${total}</td>
                                         </tr>
                                         <tr>
                                             <td colSpan={2} className="text-left">
                                                 <h4>Shipping</h4>
-                                                <div className="form-group form-group-custom-control">
-                                                    <div className="custom-control custom-radio">
-                                                        <input
-                                                            type="radio"
-                                                            className="custom-control-input"
-                                                            name="radio"
-                                                            defaultChecked=""
-                                                        />
-                                                        <label className="custom-control-label">
-                                                            Local pickup
-                                                        </label>
+                                                <div className="align-items-center d-flex justify-content-between mt-3">
+                                                    <input type="radio" name="Sundorbon" value="Sundorbon" />
+                                                    <label className="ms-2 text-secondary m-0"> Sundorbon Courier Service
+                                                    </label>
+                                                    <div className="text-dark fw-bold">
+                                                        $ 120
                                                     </div>
-                                                    {/* End .custom-checkbox */}
                                                 </div>
-                                                {/* End .form-group */}
-                                                <div className="form-group form-group-custom-control mb-0">
-                                                    <div className="custom-control custom-radio mb-0">
-                                                        <input
-                                                            type="radio"
-                                                            name="radio"
-                                                            className="custom-control-input"
-                                                        />
-                                                        <label className="custom-control-label">
-                                                            Flat rate
-                                                        </label>
-                                                    </div>
-                                                    {/* End .custom-checkbox */}
-                                                </div>
-                                                {/* End .form-group */}
-                                                <form action="#">
-                                                    <div className="form-group form-group-sm">
-                                                        <label>
-                                                            Shipping to <strong>NY.</strong>
-                                                        </label>
-                                                        <div className="select-custom">
-                                                            <select className="form-control form-control-sm">
-                                                                <option value="USA">United States (US)</option>
-                                                                <option value="Turkey">Turkey</option>
-                                                                <option value="China">China</option>
-                                                                <option value="Germany">Germany</option>
-                                                            </select>
-                                                        </div>
-                                                        {/* End .select-custom */}
-                                                    </div>
-                                                    {/* End .form-group */}
-                                                    <div className="form-group form-group-sm">
-                                                        <div className="select-custom">
-                                                            <select className="form-control form-control-sm">
-                                                                <option value="NY">New York</option>
-                                                                <option value="CA">California</option>
-                                                                <option value="TX">Texas</option>
-                                                            </select>
-                                                        </div>
-                                                        {/* End .select-custom */}
-                                                    </div>
-                                                    {/* End .form-group */}
-                                                    <div className="form-group form-group-sm">
-                                                        <input
-                                                            type="text"
-                                                            className="form-control form-control-sm"
-                                                            placeholder="Town / City"
-                                                        />
-                                                    </div>
-                                                    {/* End .form-group */}
-                                                    <div className="form-group form-group-sm">
-                                                        <input
-                                                            type="text"
-                                                            className="form-control form-control-sm"
-                                                            placeholder="ZIP"
-                                                        />
-                                                    </div>
-                                                    {/* End .form-group */}
-                                                    <button
-                                                        type="submit"
-                                                        className="btn btn-shop btn-update-total"
-                                                    >
-                                                        Update Totals
-                                                    </button>
-                                                </form>
+
+
+
                                             </td>
                                         </tr>
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <td>Total</td>
-                                            <td>$17.90</td>
+
+                                            <td>   {parseFloat(total) + 120} </td>
                                         </tr>
                                     </tfoot>
                                 </table>
                                 <div className="checkout-methods">
-                                    <a href="cart.html" className="btn btn-block btn-dark">
-                                        Proceed to Checkout
-                                        <i className="fa fa-arrow-right" />
-                                    </a>
+                                    <button disabled={cart.length == 0}
+                                    className="btn btn-block btn-dark">
+                                        <Link className="font-weight-bold text-decoration-none text-white">
+                                            Proceed to Checkout
+                                            <i className="fa fa-arrow-right" />
+                                        </Link>
+                                    </button>
                                 </div>
                             </div>
                             {/* End .cart-summary */}

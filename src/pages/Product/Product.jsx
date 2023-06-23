@@ -204,7 +204,7 @@ const Product = () => {
                                         <div className="row">
                                             <div className="col-md-4">
                                                 <img
-                                                    src="assets/images/products/single/body-shape.png"
+                                                    src=""
                                                     alt="body shape"
                                                     width={217}
                                                     height={398}
