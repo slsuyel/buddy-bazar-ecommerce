@@ -3,12 +3,12 @@ import useAllproducts from "../../hooks/useAllproducts";
 import ProductsSections from "../Home/ProductsSections/ProductsSections";
 
 const Product = () => {
-    const [allProducts, , isLoading] = useAllproducts();
     const { id } = useParams();
+    const [allProducts, , isLoading] = useAllproducts();
     if (isLoading) {
         return <div>Loading....</div>;
     }
-    const product = allProducts.find((p) => p._id == id);
+    const product = allProducts?.find((p) => p._id == id);
 
 
     const handleAddCart = (product) => {

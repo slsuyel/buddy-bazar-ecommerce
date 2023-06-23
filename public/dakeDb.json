@@ -162,19 +162,37 @@
         "image2": "https://images.unsplash.com/photo-1559563458-527698bf5295?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
     },
     {
+        "name": "Product L",
+        "_id": "gsgf5455s44s44",
+        "description": "Keep your home clean and fresh with this powerful vacuum cleaner.",
+        "rating": 4.9,
+        "SKU": "SKU147",
+        "status": "latest",
+        "category": "Home & Garden",
+        "tags": [
+            "cleaning",
+            "home appliances",
+            "efficiency"
+        ],
+        "price": 149.99,
+        "discounts": 6,
+        "image1": "https://images.unsplash.com/photo-1598532163257-ae3c6b2524b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmFnc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        "image2": "https://images.unsplash.com/photo-1559563458-527698bf5295?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
+    },
+    {
         "name": "Product M",
         "_id": "asdgsgf545544",
         "description": "Improve your fitness routine with this high-performance sports watch.",
         "rating": 4.7,
         "SKU": "SKU963",
-        "status": "latest",
+        "status": "feature",
         "category": "Sports & Outdoors",
         "tags": [
             "fitness",
             "health",
             "wearables"
         ],
-        "price": 129.99,
+        "price": 929.99,
         "discounts": 4,
         "image1": "https://images.unsplash.com/photo-1559563458-527698bf5295?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
         "image2": "https://static-01.daraz.com.bd/p/929a0ae6761f74411dfa6b897ffa426c.jpg"

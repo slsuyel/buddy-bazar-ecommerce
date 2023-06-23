@@ -7,6 +7,9 @@ import Category from "../pages/Product/Category";
 import Cart from "../pages/Cart/Cart";
 import Checkout from "../pages/Checkout/Checkout";
 import Dashboard from "../LayOut/Dashboard/Dashboard";
+import Login from "../pages/Shared/Login/Login";
+import Register from "../pages/Shared/Register/Register";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -23,20 +26,28 @@ export const router = createBrowserRouter([
         element: <Product />,
       },
       {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+      {
         path: "/category",
         element: <Category />,
       },
       {
         path: "cart",
-        element: <Cart />,
+        element:<PrivateRoute> <Cart /></PrivateRoute>,
       },
       {
         path: "checkout",
-        element: <Checkout />,
+        element:<PrivateRoute> <Checkout /></PrivateRoute>,
       },
       {
         path: "dashboard",
-        element: <Dashboard />,
+        element: <PrivateRoute><Dashboard /></PrivateRoute>,
       },
     ],
   },

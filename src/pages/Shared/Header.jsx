@@ -1,6 +1,17 @@
 import { Link } from "react-router-dom";
 import CartSideBar from "../Product/CartSideBar";
+import { useContext } from "react";
+import { AuthContext } from "../../provider/AuthProviders";
 const Header = () => {
+
+  const { logOut, user } = useContext(AuthContext);
+  console.log(user);
+  const logoutBtn = () => {
+    logOut();
+  };
+
+
+
   return (
     <>
       <header className="header home">
@@ -31,9 +42,12 @@ const Header = () => {
                       <Link to='cart'>Cart</Link>
                     </li>
                     <li>
-                      <Link to='/' className="login-link">
+                      <Link to='/login' className="">
                         Log In
                       </Link>
+                      <button onClick={logoutBtn}>
+                        Log Out
+                      </button>
                     </li>
                   </ul>
                 </div>

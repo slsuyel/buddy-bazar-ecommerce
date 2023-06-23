@@ -37,7 +37,7 @@ const Featured = () => {
                                     <div className="product-label label-sale">-20%</div>
                                 </div>
                                 {/* <div className="btn-icon-group"></div> */}
-                                <Link to="/product" className="btn-quickview">
+                                <Link to={`/product/${feature._id}`} className="btn-quickview">
                                     Quick View
                                 </Link>
                             </figure>
