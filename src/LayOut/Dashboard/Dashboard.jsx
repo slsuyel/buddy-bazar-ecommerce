@@ -434,14 +434,14 @@ const Dashboard = () => {
                                                     Country / Region <span className="required">*</span>
                                                 </label>
                                                 <select name="orderby" className="form-control">
-                                                    <option value="" selected="selected">
+                                                    <option defaultValue="" selected="selected">
                                                         British Indian Ocean Territory
                                                     </option>
-                                                    <option value={1}>Brunei</option>
-                                                    <option value={2}>Bulgaria</option>
-                                                    <option value={3}>Burkina Faso</option>
-                                                    <option value={4}>Burundi</option>
-                                                    <option value={5}>Cameroon</option>
+                                                    <option defaultValue={1}>Brunei</option>
+                                                    <option defaultValue={2}>Bulgaria</option>
+                                                    <option defaultValue={3}>Burkina Faso</option>
+                                                    <option defaultValue={4}>Burundi</option>
+                                                    <option defaultValue={5}>Cameroon</option>
                                                 </select>
                                             </div>
                                             <div className="form-group">
@@ -546,14 +546,14 @@ const Dashboard = () => {
                                                     Country / Region <span className="required">*</span>
                                                 </label>
                                                 <select name="orderby" className="form-control">
-                                                    <option value="" selected="selected">
+                                                    <option defaultValue="" selected="selected">
                                                         British Indian Ocean Territory
                                                     </option>
-                                                    <option value={1}>Brunei</option>
-                                                    <option value={2}>Bulgaria</option>
-                                                    <option value={3}>Burkina Faso</option>
-                                                    <option value={4}>Burundi</option>
-                                                    <option value={5}>Cameroon</option>
+                                                    <option defaultValue={1}>Brunei</option>
+                                                    <option defaultValue={2}>Bulgaria</option>
+                                                    <option defaultValue={3}>Burkina Faso</option>
+                                                    <option defaultValue={4}>Burundi</option>
+                                                    <option defaultValue={5}>Cameroon</option>
                                                 </select>
                                             </div>
                                             <div className="form-group">

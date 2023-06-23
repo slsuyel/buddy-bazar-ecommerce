@@ -83,7 +83,7 @@ const CartSideBar = () => {
 
                     <div className="dropdown-cart-action">
                         <Link to='/cart' className="btn btn-gray btn-block view-cart">View Cart</Link>
-                        <a href="checkout.html" className="btn btn-dark btn-block">Checkout</a>
+                        <Link to="/checkout" className="btn btn-dark btn-block">Checkout</Link>
                     </div>
 
                 </div>

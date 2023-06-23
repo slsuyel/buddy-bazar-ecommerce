@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProviders";
 
 const Header = () => {
-  const { logOut } = useContext(AuthContext);
+  const { logOut, user } = useContext(AuthContext);
 
   const logoutBtn = () => {
     logOut();
@@ -32,7 +32,7 @@ const Header = () => {
                       <a href="demo1-contact.html">Contact Us</a>
                     </li>
                     <li>
-                      <a href="wishlist.html">My Wishlist</a>
+                      <a href="">My Wishlist</a>
                     </li>
                     <li>
                       <a href="#">Site Map</a>
@@ -42,12 +42,16 @@ const Header = () => {
                       <Link to='cart'>Cart</Link>
                     </li>
                     <li>
-                      <Link to='/login' className="">
-                        Log In
-                      </Link>
-                      <button onClick={logoutBtn}>
-                        Log Out
-                      </button>
+
+                      {
+                        !user ? <Link to='/login' className="">
+                          Log In
+                        </Link> : <Link onClick={logoutBtn}>
+                          Log Out
+                        </Link>
+                      }
+
+
                     </li>
                   </ul>
                 </div>
@@ -124,9 +128,9 @@ const Header = () => {
                 <i className="fa-solid fa-user"></i>
               </Link>
 
-              <a href="wishlist.html" className="header-icon">
+              <Link href="/" className="header-icon">
                 <i className="fa-solid fa-heart"></i>
-              </a>
+              </Link>
 
               <CartSideBar />
 

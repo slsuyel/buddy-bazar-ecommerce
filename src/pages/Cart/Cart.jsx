@@ -147,7 +147,9 @@ const Cart = () => {
                                             <td colSpan={2} className="text-left">
                                                 <h4>Shipping</h4>
                                                 <div className="align-items-center d-flex justify-content-between mt-3">
-                                                    <input type="radio" name="Sundorbon" value="Sundorbon" />
+                                                    <input type="radio"
+                                                        defaultChecked
+                                                        name="Sundorbon" value="Sundorbon" />
                                                     <label className="ms-2 text-secondary m-0"> Sundorbon Courier Service
                                                     </label>
                                                     <div className="text-dark fw-bold">
@@ -170,8 +172,8 @@ const Cart = () => {
                                 </table>
                                 <div className="checkout-methods">
                                     <button disabled={cart.length == 0}
-                                    className="btn btn-block btn-dark">
-                                        <Link className="font-weight-bold text-decoration-none text-white">
+                                        className="btn btn-block btn-dark">
+                                        <Link to='/checkout' className="font-weight-bold text-decoration-none text-white">
                                             Proceed to Checkout
                                             <i className="fa fa-arrow-right" />
                                         </Link>

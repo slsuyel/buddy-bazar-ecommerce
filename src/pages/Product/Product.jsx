@@ -1,8 +1,16 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import useAllproducts from "../../hooks/useAllproducts";
 import ProductsSections from "../Home/ProductsSections/ProductsSections";
+import { baseUrl } from "../../baseUrl/baseUrl";
+import useCart from "../../hooks/useCart";
+import { useContext } from "react";
+import { AuthContext } from "../../provider/AuthProviders";
+import Swal from "sweetalert2";
 
 const Product = () => {
+    const [, refetch,] = useCart()
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
     const { id } = useParams();
     const [allProducts, , isLoading] = useAllproducts();
     if (isLoading) {
@@ -11,9 +19,41 @@ const Product = () => {
     const product = allProducts?.find((p) => p._id == id);
 
 
-    const handleAddCart = (product) => {
-        console.log(product);
-    }
+    const handleAddToCart = (product) => {
+        if (user && user?.email) {
+            const cartProducts = {
+                email: user.email,
+                cartId: product._id,
+                productName: product.name,
+                image: product.image1,
+                price: product.price
+            };
+            // console.log(selectedClass);
+
+            fetch(`${baseUrl}/carts`, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify(cartProducts)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.insertedId) {
+                        refetch()
+                        Swal.fire({
+                            position: 'top-start',
+                            icon: 'success',
+                            title: 'Product added to cart successfully',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                })
+        } else {
+            navigate('/login');
+        }
+    };
     return (
         <>
             <div className="page-wrapper">
@@ -85,7 +125,7 @@ const Product = () => {
                                     <div className="product-action">
                                         {" "}
 
-                                        <button onClick={() => { handleAddCart(product) }} className="btn btn-dark fs-4 fw-bold p-2 px-3 rounded-0 text-capitalize">
+                                        <button onClick={() => { handleAddToCart(product) }} className="btn btn-dark fs-4 fw-bold p-2 px-3 rounded-0 text-capitalize">
                                             {" "}
                                             <i className="fa-solid fa-cart-shopping"></i> Add to Cart
                                         </button>
@@ -194,75 +234,7 @@ const Product = () => {
                                         </p>
                                     </div>{" "}
                                 </div>{" "}
-                                <div
-                                    className="tab-pane fade"
-                                    id="product-size-content"
-                                    role="tabpanel"
-                                    aria-labelledby="product-tab-size"
-                                >
-                                    <div className="product-size-content">
-                                        <div className="row">
-                                            <div className="col-md-4">
-                                                <img
-                                                    src=""
-                                                    alt="body shape"
-                                                    width={217}
-                                                    height={398}
-                                                />
-                                            </div>{" "}
-                                            <div className="col-md-8">
-                                                <table className="table table-size">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>SIZE</th>
-                                                            <th>CHEST(in.)</th>
-                                                            <th>WAIST(in.)</th>
-                                                            <th>HIPS(in.)</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>XS</td>
-                                                            <td>34-36</td>
-                                                            <td>27-29</td>
-                                                            <td>34.5-36.5</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>S</td>
-                                                            <td>36-38</td>
-                                                            <td>29-31</td>
-                                                            <td>36.5-38.5</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>M</td>
-                                                            <td>38-40</td>
-                                                            <td>31-33</td>
-                                                            <td>38.5-40.5</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>L</td>
-                                                            <td>40-42</td>
-                                                            <td>33-36</td>
-                                                            <td>40.5-43.5</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>XL</td>
-                                                            <td>42-45</td>
-                                                            <td>36-40</td>
-                                                            <td>43.5-47.5</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>XXL</td>
-                                                            <td>45-48</td>
-                                                            <td>40-44</td>
-                                                            <td>47.5-51.5</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>{" "}
-                                    </div>{" "}
-                                </div>{" "}
+
                                 <div
                                     className="tab-pane fade"
                                     id="product-tags-content"
@@ -297,140 +269,8 @@ const Product = () => {
                                     aria-labelledby="product-tab-reviews"
                                 >
                                     <div className="product-reviews-content">
-                                        <h3 className="reviews-title">
-                                            1 review for Men Black Sports Shoes
-                                        </h3>
-                                        <div className="comment-list">
-                                            <div className="comments">
-                                                <figure className="img-thumbnail">
-                                                    <img
-                                                        src="assets/images/blog/author.jpg"
-                                                        alt="author"
-                                                        width={80}
-                                                        height={80}
-                                                    />
-                                                </figure>
-                                                <div className="comment-block">
-                                                    <div className="comment-header">
-                                                        <div className="comment-arrow" />
-                                                        <div className="ratings-container float-sm-right">
-                                                            <div className="product-ratings">
-                                                                <span
-                                                                    className="ratings"
-                                                                    style={{ width: "60%" }}
-                                                                />{" "}
-                                                                <span className="tooltiptext tooltip-top" />
-                                                            </div>{" "}
-                                                        </div>
-                                                        <span className="comment-by">
-                                                            <strong>Joe Doe</strong> – April 12, 2018
-                                                        </span>
-                                                    </div>
-                                                    <div className="comment-content">
-                                                        <p>Excellent.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="divider" />
-                                        <div className="add-product-review">
-                                            <h3 className="review-title">Add a review</h3>
-                                            <form action="#" className="comment-form m-0">
-                                                <div className="rating-form">
-                                                    <label htmlFor="rating">
-                                                        Your rating <span className="required">*</span>
-                                                    </label>
-                                                    <span className="rating-stars">
-                                                        <a className="star-1" href="#">
-                                                            1
-                                                        </a>
-                                                        <a className="star-2" href="#">
-                                                            2
-                                                        </a>
-                                                        <a className="star-3" href="#">
-                                                            3
-                                                        </a>
-                                                        <a className="star-4" href="#">
-                                                            4
-                                                        </a>
-                                                        <a className="star-5" href="#">
-                                                            5
-                                                        </a>
-                                                    </span>
-                                                    <select
-                                                        name="rating"
-                                                        id="rating"
-                                                        required=""
-                                                        style={{ display: "none" }}
-                                                    >
-                                                        <option value="">Rate…</option>
-                                                        <option value={5}>Perfect</option>
-                                                        <option value={4}>Good</option>
-                                                        <option value={3}>Average</option>
-                                                        <option value={2}>Not that bad</option>
-                                                        <option value={1}>Very poor</option>
-                                                    </select>
-                                                </div>
-                                                <div className="form-group">
-                                                    <label>
-                                                        Your review <span className="required">*</span>
-                                                    </label>
-                                                    <textarea
-                                                        cols={5}
-                                                        rows={6}
-                                                        className="form-control form-control-sm"
-                                                        defaultValue={""}
-                                                    />
-                                                </div>{" "}
-                                                <div className="row">
-                                                    <div className="col-md-6 col-xl-12">
-                                                        <div className="form-group">
-                                                            <label>
-                                                                Name <span className="required">*</span>
-                                                            </label>
-                                                            <input
-                                                                type="text"
-                                                                className="form-control form-control-sm"
-                                                                required=""
-                                                            />
-                                                        </div>{" "}
-                                                    </div>
-                                                    <div className="col-md-6 col-xl-12">
-                                                        <div className="form-group">
-                                                            <label>
-                                                                Email <span className="required">*</span>
-                                                            </label>
-                                                            <input
-                                                                type="text"
-                                                                className="form-control form-control-sm"
-                                                                required=""
-                                                            />
-                                                        </div>{" "}
-                                                    </div>
-                                                    <div className="col-md-12">
-                                                        <div className="custom-control custom-checkbox">
-                                                            <input
-                                                                type="checkbox"
-                                                                className="custom-control-input"
-                                                                id="save-name"
-                                                            />
-                                                            <label
-                                                                className="custom-control-label mb-0"
-                                                                htmlFor="save-name"
-                                                            >
-                                                                Save my name, email, and website in this browser
-                                                                for the next time I comment.
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <input
-                                                    type="submit"
-                                                    className="btn btn-primary"
-                                                    defaultValue="Submit"
-                                                />
-                                            </form>
-                                        </div>{" "}
+                                        <p>nice product</p>
+
                                     </div>{" "}
                                 </div>
                             </div>

@@ -76,7 +76,7 @@ const Featured = () => {
 
                 {
                     featuredProducts.slice(1, 5).map(feature => (
-                        <div key={feature.SKU} className="product-default inner-quickview inner-icon w-25" >
+                        <div key={feature._id} className="product-default inner-quickview inner-icon w-25" >
                             <figure className="img-effect" >
                                 <Link to={`/product/${feature._id}`}>
                                     <img
