@@ -2,16 +2,16 @@
 /* eslint-disable no-unused-vars */
 import { useContext, useEffect, useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { baseUrl } from "../../../baseUrl/baseUrl";
 import { AuthContext } from "../../../provider/AuthProviders";
 import useCart from "../../../hooks/useCart";
 
 const StripePayment = () => {
-    const [cart,refetch,] = useCart()
-    console.log(cart);
-    const token = localStorage.getItem("address")
+    const { total } = useParams()
+    const address = localStorage.getItem('address')
+    const [cart, refetch,] = useCart()
     const navigate = useNavigate()
     const { user } = useContext(AuthContext)
     const stripe = useStripe()
@@ -20,22 +20,20 @@ const StripePayment = () => {
     const [clientSecret, setClientSecret] = useState("");
     const [processing, setProcessing] = useState(false);
     const [transactionId, setTransactionId] = useState('');
-
-
     const price = 120 + parseFloat(cart.reduce((acc, item) => acc + item.price, 0).toFixed(2));
-    console.log(price);
     useEffect(() => {
         fetch(`${baseUrl}/create-payment-intent`, {
             method: "POST",
             headers: {
                 'content-type': 'application/json',
             },
-            body: JSON.stringify({ price: price || 1 }),
-
+            body: JSON.stringify({ price: price || 120 + parseFloat(total).toFixed(2) }),
         })
             .then((res) => res.json())
             .then((data) => setClientSecret(data.clientSecret));
-    }, [price]);
+    }, []);
+
+
 
     // console.log(clientSecret);
 
@@ -116,9 +114,9 @@ const StripePayment = () => {
                             icon: 'success',
                             text: "Your payment was successful!"
                         });
-                        // setTimeout(function () {
-                        //     navigate('/dashboard/enrolledclasses')
-                        // }, 3000);
+                        setTimeout(function () {
+                            navigate('/')
+                        }, 3000);
                     }
                 });
         }
@@ -145,7 +143,11 @@ const StripePayment = () => {
                     }}
                 />
                 <button className="btn btn-primary m-3" type="submit" disabled={!stripe || !clientSecret || processing}>
-                    Pay
+                    {processing ? (
+                        <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    ) : (
+                        'Pay'
+                    )}
                 </button>
             </form>
             <p className="text-center text-danger"> {cardError}</p>

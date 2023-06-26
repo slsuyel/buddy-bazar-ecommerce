@@ -1,8 +1,10 @@
 import { useContext, useState } from "react";
 import useCart from "../../hooks/useCart";
 import { AuthContext } from "../../provider/AuthProviders";
+import { Link } from "react-router-dom";
 
 const Checkout = () => {
+
     const [cart, ,] = useCart()
     const { user } = useContext(AuthContext);
     const total = cart.reduce((accumulator, item) => accumulator + item.price, 0).toFixed(2);
@@ -21,9 +23,9 @@ const Checkout = () => {
         const { name, value } = e.target;
         setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
-
-    console.log(formData);
-
+    const handleClick = () => {
+        localStorage.setItem('address', JSON.stringify(formData));
+    };
 
     return (
         <div>
@@ -318,17 +320,25 @@ const Checkout = () => {
                                             </div>
                                         </div>
                                     </div>
-                                 
-                                        <button
-                                            onClick={() => localStorage.setItem('address', JSON.stringify(formData))}
-                                            disabled={cart.length === 0 || formData.phone === '' || formData.displayName === '' || formData.email === '' || formData.address === '' || formData.phone === ''}
-                                            type="submit"
-                                            className="btn fs-4 btn-dark py-3 btn-place-order"
-                                            form="checkout-form"
-                                        >
-                                            Place order
-                                        </button>
-                                   
+
+                                    <button
+                                        onClick={handleClick}
+                                        className="btn-dark  btn fs-4 btn-place-order"
+                                        disabled={
+                                            cart.length === 0 ||
+                                            formData.phone === '' ||
+                                            formData.displayName === '' ||
+                                            formData.email === '' ||
+                                            formData.address === '' ||
+                                            formData.phone === ''
+                                        }
+                                        type="submit"
+                                    >
+                                        <Link to={`/payment/${parseInt(total)}`}
+                                            className=" fs-2 text-decoration-none text-white"
+                                            form="checkout-form"> Place order</Link>
+                                    </button>
+
                                 </div>
 
                             </div>
