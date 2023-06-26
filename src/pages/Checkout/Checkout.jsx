@@ -1,9 +1,29 @@
+import { useContext, useState } from "react";
 import useCart from "../../hooks/useCart";
+import { AuthContext } from "../../provider/AuthProviders";
 
 const Checkout = () => {
     const [cart, ,] = useCart()
-    // console.log(cart);
+    const { user } = useContext(AuthContext);
     const total = cart.reduce((accumulator, item) => accumulator + item.price, 0).toFixed(2);
+
+    const [formData, setFormData] = useState({
+        name: user?.displayName,
+        district: 'Dhaka',
+        address: '',
+        city: '',
+        postcode: '',
+        phone: '',
+        email: user.email
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({ ...prevData, [name]: value }));
+    };
+
+    console.log(formData);
+
 
     return (
         <div>
@@ -26,11 +46,11 @@ const Checkout = () => {
                                                 </label>
                                                 <input
                                                     name="name"
-
                                                     type="text"
                                                     className="form-control fs-3"
                                                     required
-
+                                                    value={formData.name}
+                                                    onChange={handleChange}
                                                 />
                                             </div>
 
@@ -44,7 +64,8 @@ const Checkout = () => {
                                                 <select
                                                     name="district"
                                                     className="form-control fs-4"
-
+                                                    value={formData.district}
+                                                    onChange={handleChange}
                                                 >
                                                     <option defaultValue="Bagerhat">Bagerhat</option>
                                                     <option defaultValue="Bandarban">Bandarban</option>
@@ -113,8 +134,9 @@ const Checkout = () => {
                                                     type="text"
                                                     className="form-control fs-3"
                                                     placeholder="House number and street name"
-                                                    required=""
-
+                                                    required
+                                                    value={formData.address}
+                                                    onChange={handleChange}
                                                 />
                                             </div>
 
@@ -129,8 +151,9 @@ const Checkout = () => {
                                                     name="city"
                                                     type="text"
                                                     className="form-control fs-3"
-                                                    required=""
-
+                                                    required
+                                                    value={formData.city}
+                                                    onChange={handleChange}
                                                 />
                                             </div>
 
@@ -145,8 +168,9 @@ const Checkout = () => {
                                                     name="postcode"
                                                     type="text"
                                                     className="form-control fs-3"
-                                                    required=""
-
+                                                    required
+                                                    value={formData.postcode}
+                                                    onChange={handleChange}
                                                 />
                                             </div>
 
@@ -161,8 +185,9 @@ const Checkout = () => {
                                                     name="phone"
                                                     type="number"
                                                     className="form-control fs-3"
-                                                    required=""
-
+                                                    required
+                                                    value={formData.phone}
+                                                    onChange={handleChange}
                                                 />
                                             </div>
 
@@ -177,10 +202,12 @@ const Checkout = () => {
                                                     name="email"
                                                     type="email"
                                                     className="form-control fs-3"
-                                                    required=""
-
+                                                    required
+                                                    value={formData.email}
+                                                    onChange={handleChange}
                                                 />
                                             </div>
+
                                         </form>
                                     </li>
                                 </ul>
@@ -257,6 +284,7 @@ const Checkout = () => {
                                                 <label>
                                                     <input
                                                         type="radio"
+                                                        disabled
                                                         name="paymentMethod"
                                                         value="sslcommerz"
 
@@ -273,6 +301,7 @@ const Checkout = () => {
 
                                                 <label>
                                                     <input
+                                                        defaultChecked
                                                         type="radio"
                                                         name="paymentMethod"
                                                         value="stripe"
@@ -289,15 +318,17 @@ const Checkout = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <button
-                                        disabled={cart.length === 0}
-                                        type="submit"
-                                        className="btn fs-4 btn-dark py-3 btn-place-order"
-                                        form="checkout-form"
-
-                                    >
-                                        Place order
-                                    </button>
+                                 
+                                        <button
+                                            onClick={() => localStorage.setItem('address', JSON.stringify(formData))}
+                                            disabled={cart.length === 0 || formData.phone === '' || formData.displayName === '' || formData.email === '' || formData.address === '' || formData.phone === ''}
+                                            type="submit"
+                                            className="btn fs-4 btn-dark py-3 btn-place-order"
+                                            form="checkout-form"
+                                        >
+                                            Place order
+                                        </button>
+                                   
                                 </div>
 
                             </div>

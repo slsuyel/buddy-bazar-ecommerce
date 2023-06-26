@@ -10,6 +10,7 @@ import Dashboard from "../LayOut/Dashboard/Dashboard";
 import Login from "../pages/Shared/Login/Login";
 import Register from "../pages/Shared/Register/Register";
 import PrivateRoute from "./PrivateRoute";
+import Payment from "../pages/payment/StripePayment/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ export const router = createBrowserRouter([
       {
         path: "dashboard",
         element: <PrivateRoute><Dashboard /></PrivateRoute>,
+      },
+      {
+        path: "payment",
+        element: <PrivateRoute><Payment /></PrivateRoute>,
       },
     ],
   },
