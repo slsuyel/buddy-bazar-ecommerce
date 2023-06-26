@@ -33,10 +33,10 @@ const CartSideBar = () => {
     }
     return (
         <div className="dropdown cart-dropdown">
-            <a href="#" title="Cart" className="dropdown-toggle dropdown-arrow cart-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+            <div  title="Cart" className="dropdown-toggle dropdown-arrow cart-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                 <i className="fa-solid fa-cart-shopping"></i>
                 <span className="cart-count badge-circle">{cart?.length}</span>
-            </a>
+            </div>
 
             <div className="cart-overlay"></div>
             <div className="dropdown-menu mobile-cart">

@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom';
 
 import Slider from './Slider';
 import Featured from '../../Featured/Featured';
 import Brands from './Brands/Brands';
 import ProductsSections from '../ProductsSections/ProductsSections';
 import FeatureBoxes from '../FeatureBoxes/FeatureBoxes';
+import StickyNavbar from '../../Shared/StickyNavbar/StickyNavbar';
 
 const Home = () => {
 
@@ -39,7 +39,8 @@ const Home = () => {
                 </div>
               </div>
               <div className="row">
-                <div className="col-lg-9">
+
+                <div className="col-md-9 order-md-2">
 
                   <Slider />
 
@@ -49,7 +50,13 @@ const Home = () => {
                   <FeatureBoxes />
                 </div>
 
-                <div className="sidebar-overlay " />
+                <div className='col-md-3'>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis voluptatibus architecto magnam quibusdam maiores nisi deserunt culpa exercitationem odio, corrupti perferendis eius ducimus fuga veritatis placeat et praesentium, ex amet.
+                </div>
+
+
+
+                {/* <div className="sidebar-overlay " />
                 <div className="sidebar-toggle custom-sidebar-toggle">
                   <i className="fas fa-sliders-h" />
                 </div>
@@ -628,7 +635,7 @@ const Home = () => {
 
                   </div>
 
-                </aside>
+                </aside> */}
 
               </div>
 
@@ -899,41 +906,7 @@ const Home = () => {
 
         </div>
 
-        <div className="sticky-navbar">
-          <div className="sticky-info">
-            <a href="demo1.html">
-              <i className="icon-home" />
-              Home
-            </a>
-          </div>
-          <div className="sticky-info">
-            <a href="demo1-shop.html" className="">
-              <i className="icon-bars" />
-              Categories
-            </a>
-          </div>
-          <div className="sticky-info">
-            <a href="wishlist.html" className="">
-              <i className="icon-wishlist-2" />
-              Wishlist
-            </a>
-          </div>
-          <div className="sticky-info">
-            <a href="login.html" className="">
-              <i className="icon-user-2" />
-              Account
-            </a>
-          </div>
-          <div className="sticky-info">
-            <a href="cart.html" className="">
-              <i className="icon-shopping-cart position-relative">
-                <span className="cart-count badge-circle">3</span>
-              </i>
-              Cart
-            </a>
-          </div>
-        </div>
-
+        <StickyNavbar/>
       </>
 
     </div>

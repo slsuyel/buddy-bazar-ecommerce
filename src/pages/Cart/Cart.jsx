@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import useCart from "../../hooks/useCart";
 import { baseUrl } from "../../baseUrl/baseUrl";
 import Swal from "sweetalert2";
+import StickyNavbar from "../Shared/StickyNavbar/StickyNavbar";
 
 const Cart = () => {
     const [cart, refetch,] = useCart()
@@ -488,40 +489,7 @@ const Cart = () => {
                 {/* End .mobile-menu-wrapper */}
             </div>
             {/* End .mobile-menu-container */}
-            <div className="sticky-navbar">
-                <div className="sticky-info">
-                    <a href="demo4.html">
-                        <i className="icon-home" />
-                        Home
-                    </a>
-                </div>
-                <div className="sticky-info">
-                    <a href="category.html" className="">
-                        <i className="icon-bars" />
-                        Categories
-                    </a>
-                </div>
-                <div className="sticky-info">
-                    <a href="wishlist.html" className="">
-                        <i className="icon-wishlist-2" />
-                        Wishlist
-                    </a>
-                </div>
-                <div className="sticky-info">
-                    <a href="login.html" className="">
-                        <i className="icon-user-2" />
-                        Account
-                    </a>
-                </div>
-                <div className="sticky-info">
-                    <a href="cart.html" className="">
-                        <i className="icon-shopping-cart position-relative">
-                            <span className="cart-count badge-circle">3</span>
-                        </i>
-                        Cart
-                    </a>
-                </div>
-            </div>
+            <StickyNavbar />
         </>
 
     );

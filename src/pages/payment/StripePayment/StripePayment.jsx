@@ -96,6 +96,7 @@ const StripePayment = () => {
                 cartItems: cart.map(item => item._id),
                 status: 'Order pending',
                 itemNames: cart.map(item => item.productName),
+                address: JSON.stringify(address)
             };
 
             fetch(`${baseUrl}/payments`, {
@@ -115,7 +116,7 @@ const StripePayment = () => {
                             text: "Your payment was successful!"
                         });
                         setTimeout(function () {
-                            navigate('/')
+                            navigate('/dashboard')
                         }, 3000);
                     }
                 });

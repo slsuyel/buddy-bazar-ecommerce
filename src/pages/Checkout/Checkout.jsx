@@ -134,8 +134,8 @@ const Checkout = () => {
                                                 <input
                                                     name="address"
                                                     type="text"
-                                                    className="form-control fs-3"
-                                                    placeholder="House number and street name"
+                                                    className="form-control fs-4"
+                                                    placeholder="House number / street name"
                                                     required
                                                     value={formData.address}
                                                     onChange={handleChange}
@@ -323,7 +323,7 @@ const Checkout = () => {
 
                                     <button
                                         onClick={handleClick}
-                                        className="btn-dark  btn fs-4 btn-place-order"
+                                        className="bg-black btn m-0 p-0 w-100"
                                         disabled={
                                             cart.length === 0 ||
                                             formData.phone === '' ||
@@ -335,7 +335,7 @@ const Checkout = () => {
                                         type="submit"
                                     >
                                         <Link to={`/payment/${parseInt(total)}`}
-                                            className=" fs-2 text-decoration-none text-white"
+                                            className="btn btn-dark fs-4 py-2 w-100"
                                             form="checkout-form"> Place order</Link>
                                     </button>
 

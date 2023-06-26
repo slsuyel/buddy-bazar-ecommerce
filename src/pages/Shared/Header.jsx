@@ -113,7 +113,7 @@ const Header = () => {
                         <option value="57">- Auto Tools &amp; Supplies</option>
                       </select>
                     </div>
-                    <button className="bg-white border-0 fa-magnifying-glass fa-solid fs-3" type="submit"></button>
+                    <button className="bg-white border-0 fa-magnifying-glass fa-solid fs-3" ></button>
                   </div>
 
                 </form>
