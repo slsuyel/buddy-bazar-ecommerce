@@ -53,11 +53,13 @@ export default class Brands extends Component {
     render() {
         var settings = {
             dots: true,
-            infinite: false,
+            infinite: true,
             speed: 500,
             slidesToShow: 4,
             slidesToScroll: 4,
             initialSlide: 0,
+            autoplay: true, 
+            autoplaySpeed: 2000,
             responsive: [
                 {
                     breakpoint: 1024,
@@ -90,7 +92,7 @@ export default class Brands extends Component {
                 <Slider {...settings}>
                     <div>
                         <img
-                            src="https://www.portotheme.com/wordpress/porto/shop1-soft/wp-content/uploads/sites/127/2020/02/new_brand4.png"
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Samsung_Logo.svg/2560px-Samsung_Logo.svg.png"
                             width={140}
                             height={60}
                             alt="brand"
@@ -106,7 +108,7 @@ export default class Brands extends Component {
                     </div>
                     <div>
                         <img
-                            src="https://www.portotheme.com/wordpress/porto/shop1-soft/wp-content/uploads/sites/127/2020/02/new_brand4.png"
+                            src="https://www.vectorlogo.zone/logos/apple/apple-ar21.png"
                             width={140}
                             height={60}
                             alt="brand"
@@ -122,7 +124,7 @@ export default class Brands extends Component {
                     </div>
                     <div>
                         <img
-                            src="https://www.portotheme.com/wordpress/porto/shop1-soft/wp-content/uploads/sites/127/2020/02/new_brand4.png"
+                            src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1200,h=630,fit=crop,f=jpeg/mp80DVrLexi8VNpz/illian-logotipo-AoPQgrqOlas1ENyv.png?no-cache=1683763200020"
                             width={140}
                             height={60}
                             alt="brand"
@@ -138,7 +140,7 @@ export default class Brands extends Component {
                     </div>
                     <div>
                         <img
-                            src="https://www.portotheme.com/wordpress/porto/shop1-soft/wp-content/uploads/sites/127/2020/02/new_brand4.png"
+                            src="https://www.aarong.com/media/wysiwyg/MARC-Logo.png"
                             width={140}
                             height={60}
                             alt="brand"

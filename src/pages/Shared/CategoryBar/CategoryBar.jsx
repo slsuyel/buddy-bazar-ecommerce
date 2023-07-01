@@ -20,7 +20,6 @@ const CategoryBar = () => {
     return (
         <>
             <div className="border-bottom pb-4 mb-5">
-                <h2 className="mb-3">Categories</h2>
                 <MegaMenu />
             </div>
             <div className="border-bottom pb-4 mb-5">

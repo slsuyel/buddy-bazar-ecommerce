@@ -6,6 +6,8 @@ import ProductsSections from '../ProductsSections/ProductsSections';
 import FeatureBoxes from '../FeatureBoxes/FeatureBoxes';
 import StickyNavbar from '../../Shared/StickyNavbar/StickyNavbar';
 import MegaMenu from '../MegaMenu/MegaMenu';
+import Shop from '../../Shared/Shop/Shop';
+import OffersDay from './OffersDay/OffersDay';
 
 const Home = () => {
 
@@ -44,20 +46,22 @@ const Home = () => {
                 <div className="col-md-9 order-md-2">
 
                   <Slider />
-
                   <Featured />
                   <Brands />
                   <ProductsSections />
+
+                </div>
+
+                <div className='col-md-3 border'>
+                   <MegaMenu />
+                  <OffersDay />
+
+                </div>
+
+                <div className='col-md-12 order-md-3'>
+                  <Shop />
                   <FeatureBoxes />
                 </div>
-
-                <div className='col-md-3'>
-                  {/* Sidebar */} <MegaMenu />
-                </div>
-
-
-
-
               </div>
 
             </div>

@@ -36,7 +36,7 @@ const Header = () => {
                     <li>
                       <Link to="/wishlist" className="text-decoration-none">My Wishlist</Link>
                     </li>
-                  
+
                     <li>
                       <Link to="/cart" className="text-decoration-none">Cart</Link>
                     </li>
@@ -111,8 +111,8 @@ const Header = () => {
                 <form action="#" method="get">
                   <div className="header-search-wrapper">
                     <input type="search" className="form-control" name="q" id="q" placeholder="Search..." required="" />
-                    
-                    <button className="bg-white border-0 fa-magnifying-glass fa-solid fs-3" ></button>
+
+                    <button className="bg-white border-0 fa-magnifying-glass rounded-end-5 pe-4 fa-solid fs-3" ></button>
                   </div>
 
                 </form>
