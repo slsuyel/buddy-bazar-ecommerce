@@ -4114,17 +4114,7 @@ label {
   margin-bottom: 1rem;
   background: #fff;
 }
-.select-custom select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -ms-appearance: none;
-  position: relative;
-  z-index: 1;
-  background: transparent;
-}
-.select-custom select:focus {
-  background: transparent;
-}
+
 @media (-ms-high-contrast: active), (-ms-high-contrast: none) {
   .select-custom select::-ms-expand {
     display: none;

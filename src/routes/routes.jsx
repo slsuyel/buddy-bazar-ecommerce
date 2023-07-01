@@ -34,10 +34,7 @@ export const router = createBrowserRouter([
         path: "/register",
         element: <Register />,
       },
-      {
-        path: "/category",
-        element: <Category />,
-      },
+
       {
         path: "cart",
         element: <PrivateRoute> <Cart /></PrivateRoute>,
@@ -54,6 +51,11 @@ export const router = createBrowserRouter([
         path: "payment/:total",
         element: <PrivateRoute><Payment /></PrivateRoute>,
       },
+      {
+        path: '/categories/:category',
+        element: <Category />,
+        loader: ({ params }) => fetch(`http://localhost:5000/categories/${params.category}`)
+      }
     ],
   },
 ]);

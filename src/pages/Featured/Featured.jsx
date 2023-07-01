@@ -113,7 +113,7 @@ const Featured = () => {
                                     </button>
                                 </div>
                                 <h3 className="product-title">
-                                    <Link to='/product' className="text-decoration-none">{feature?.name}</Link>
+                                    <Link to={`/product/${feature._id}`}  className="text-decoration-none">{feature?.name}</Link>
                                 </h3>
                                 <div className="ratings-container">
                                     <div className="product-ratings">

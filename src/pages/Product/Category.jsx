@@ -1,12 +1,79 @@
-import useAllproducts from "../../hooks/useAllproducts";
+
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import CategoryBar from "../Shared/CategoryBar/CategoryBar";
+import Swal from "sweetalert2";
+import { baseUrl } from "../../baseUrl/baseUrl";
+import useCart from "../../hooks/useCart";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../provider/AuthProviders";
 
 const Category = () => {
-    const [allProducts] = useAllproducts()
-    console.log(allProducts);
+    const [isLoading, setIsLoading] = useState(true);
+    useEffect(() => {
+        const delay = setTimeout(() => {
+            setIsLoading(false);
+        }, 700);
+
+        return () => {
+            clearTimeout(delay);
+        };
+    }, []);
+    const [, refetch,] = useCart()
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const categoriesPd = useLoaderData()
+    // console.log(categoriesPd);
+    const handleAddToCart = (product) => {
+        if (user && user?.email) {
+            const cartProducts = {
+                email: user.email,
+                cartId: product._id,
+                productName: product.name,
+                image: product.image1,
+                price: product.price
+            };
+            // console.log(selectedClass);
+
+            fetch(`${baseUrl}/carts`, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify(cartProducts)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.insertedId) {
+                        // setIsLoading(false)
+                        refetch()
+                        Swal.fire({
+                            position: 'top-start',
+                            icon: 'success',
+                            title: 'Product added to cart successfully',
+                            showConfirmButton: false,
+                            timer: 1000
+                        })
+                    }
+                })
+        }
+        else {
+            navigate('/login');
+        }
+    };
+    if (isLoading) {
+        return <div className="py-5 text-center">
+            <div className="spinner-grow" role="status">
+                <span className="visually-hidden">Loading...</span>
+            </div></div>;
+    }
     return (
         <main className="main">
             <div className="container">
                 <div className="row">
+
+                    <div className="col-md-3">
+                        <CategoryBar />
+                    </div>
                     <div className="col-lg-9">
                         <nav
                             className="toolbox sticky-header"
@@ -66,8 +133,8 @@ const Category = () => {
 
                             <div className="toolbox-right">
                                 <div className="toolbox-item toolbox-show">
-                                    <label>Show:</label>
-                                    <div className="select-custom">
+                                    <span>Show:</span>
+                                    <div className="">
                                         <select name="count" className="form-control">
                                             <option value={12}>12</option>
                                             <option value={24}>24</option>
@@ -78,168 +145,67 @@ const Category = () => {
                             </div>
 
                         </nav>
+
                         <div className="row product-ajax-grid scroll-load">
-                            <div className="col-6 col-sm-4">
-                                <div className="product-default">
-                                    <figure>
-                                        <a href="product.html">
-                                            <img
-                                                src="https://www.uniqlo.com/jp/ja/contents/feature/masterpiece/common_23ss/img/item_01_01.jpg"
-                                                width={280}
-                                                height={280}
-                                                alt="product"
-                                            />
-                                            <img
-                                                src="https://www.uniqlo.com/jp/ja/contents/feature/masterpiece/common_23ss/img/item_01_01.jpg"
-                                                width={280}
-                                                height={280}
-                                                alt="product"
-                                            />
-                                        </a>
-                                        <div className="label-group">
-                                            <div className="product-label label-hot">HOT</div>
-                                            <div className="product-label label-sale">-20%</div>
-                                        </div>
-                                    </figure>
-                                    <div className="product-details">
-                                        <div className="category-wrap">
-                                            <div className="category-list">
-                                                <a href="category.html" className="product-category">
-                                                    category
-                                                </a>
+                            {
+                                categoriesPd?.map(pd => <>
+
+                                    <div className="col-md-4" key={pd._id}>
+                                        <div className="product-default card shadow">
+                                            <figure>
+                                                <Link to={`/product/${pd._id}`} >
+                                                    <img
+                                                        src={pd?.image1}
+                                                        alt="product"
+                                                        className="rounded-1"
+                                                        style={{ width: '280px', height: '200px' }}
+                                                    />
+
+                                                    <img
+                                                        src={pd?.image2}
+                                                        alt="product"
+                                                        className="rounded-1"
+                                                        style={{ width: '280px', height: '200px' }}
+                                                    />
+
+                                                </Link>
+                                                <div className="label-group">
+                                                    <div className="product-label label-hot">HOT</div>
+                                                    <div className="product-label label-sale">-20%</div>
+                                                </div>
+                                            </figure>
+                                            <div className="product-details">
+                                                <div className="category-wrap">
+
+                                                </div>
+                                                <h3 className="product-title">
+                                                    <Link to={`/product/${pd._id}`} className="text-decoration-none">{pd?.name}</Link>
+                                                </h3>
+                                                <div className="ratings-container">
+                                                    <div className="product-ratings">
+                                                        <span className="ratings" style={{ width: "100%" }} />
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div className="price-box">
+                                                    <span className="old-price">$90.00</span>
+                                                    <span className="product-price">${pd?.price}</span>
+                                                </div>
+
+                                                <div className="product-action">
+                                                    <button onClick={() => { handleAddToCart(pd) }} className="btn btn-dark fs-4 fw-bold p-2 px-3 rounded-0 text-capitalize">
+                                                        {" "}
+                                                        <i className="fa-solid fa-cart-shopping"></i> Add to Cart
+                                                    </button>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <h3 className="product-title">
-                                            {" "}
-                                            <a href="product.html">Ultimate 3D Bluetooth Speaker</a>{" "}
-                                        </h3>
-                                        <div className="ratings-container">
-                                            <div className="product-ratings">
-                                                <span className="ratings" style={{ width: "100%" }} />
 
-                                                <span className="tooltiptext tooltip-top" />
-                                            </div>
-
-                                        </div>
-
-                                        <div className="price-box">
-                                            <span className="old-price">$90.00</span>
-                                            <span className="product-price">$70.00</span>
-                                        </div>
-
-                                        <div className="product-action">
-                                            <button className="btn btn-dark fs-4 fw-bold p-2 px-3 rounded-0 text-capitalize"> <i className="fa-solid fa-cart-shopping"></i> Add to Cart</button>
                                         </div>
                                     </div>
-
-                                </div>
-                            </div>
-
-                            <div className="col-6 col-sm-4">
-                                <div className="product-default">
-                                    <figure>
-                                        <a href="product.html">
-                                            <img
-                                                src="https://www.uniqlo.com/jp/ja/contents/feature/masterpiece/common_23ss/img/item_01_01.jpg"
-                                                width={280}
-                                                height={280}
-                                                alt="product"
-                                            />
-                                            <img
-                                                src="https://www.uniqlo.com/jp/ja/contents/feature/masterpiece/common_23ss/img/item_01_01.jpg"
-                                                width={280}
-                                                height={280}
-                                                alt="product"
-                                            />
-                                        </a>
-                                    </figure>
-                                    <div className="product-details">
-                                        <div className="category-wrap">
-                                            <div className="category-list">
-                                                <a href="category.html" className="product-category">
-                                                    category
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <h3 className="product-title">
-                                            {" "}
-                                            <a href="product.html">Brown Women Casual HandBag</a>
-                                        </h3>
-                                        <div className="ratings-container">
-                                            <div className="product-ratings">
-                                                <span className="ratings" style={{ width: "100%" }} />
-
-                                                <span className="tooltiptext tooltip-top" />
-                                            </div>
-
-                                        </div>
-
-                                        <div className="price-box">
-                                            <span className="product-price">$33.00</span>
-                                        </div>
-
-                                        <div className="product-action">
-                                            <button className="btn btn-dark fs-4 fw-bold p-2 px-3 rounded-0 text-capitalize"> <i className="fa-solid fa-cart-shopping"></i> Add to Cart</button>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div className="col-6 col-sm-4">
-                                <div className="product-default">
-                                    <figure>
-                                        <a href="product.html">
-                                            <img
-                                                src="https://www.uniqlo.com/jp/ja/contents/feature/masterpiece/common_23ss/img/item_01_01.jpg"
-                                                width={280}
-                                                height={280}
-                                                alt="product"
-                                            />
-                                            <img
-                                                src="https://www.uniqlo.com/jp/ja/contents/feature/masterpiece/common_23ss/img/item_01_01.jpg"
-                                                width={280}
-                                                height={280}
-                                                alt="product"
-                                            />
-                                        </a>
-                                        <div className="label-group">
-                                            <div className="product-label label-sale">-20%</div>
-                                        </div>
-                                    </figure>
-                                    <div className="product-details">
-                                        <div className="category-wrap">
-                                            <div className="category-list">
-                                                <a href="category.html" className="product-category">
-                                                    category
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <h3 className="product-title">
-                                            {" "}
-                                            <a href="product.html">Circled Ultimate 3D Speaker</a>{" "}
-                                        </h3>
-                                        <div className="ratings-container">
-                                            <div className="product-ratings">
-                                                <span className="ratings" style={{ width: "100%" }} />
-
-                                                <span className="tooltiptext tooltip-top" />
-                                            </div>
-
-                                        </div>
-
-                                        <div className="price-box">
-                                            <span className="old-price">$90.00</span>
-                                            <span className="product-price">$70.00</span>
-                                        </div>
-
-                                        <div className="product-action">
-                                            <button className="btn btn-dark fs-4 fw-bold p-2 px-3 rounded-0 text-capitalize"> <i className="fa-solid fa-cart-shopping"></i> Add to Cart</button>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
+                                </>)
+                            }
 
 
 
@@ -249,246 +215,9 @@ const Category = () => {
 
                     </div>
 
-                    <div className="sidebar-overlay" />
-                    <aside className="sidebar-shop col-lg-3 order-lg-first mobile-sidebar">
-                        <div className="sidebar-wrapper">
-                            <div className="widget">
-                                <h3 className="widget-title">
-                                    <a
-                                        data-toggle="collapse"
-                                        href="#widget-body-2"
-                                        role="button"
-                                        aria-expanded="true"
-                                        aria-controls="widget-body-2"
-                                    >
-                                        Categories
-                                    </a>
-                                </h3>
-                                <div className="collapse show" id="widget-body-2">
-                                    <div className="widget-body">
-                                        <ul className="cat-list">
-                                            <li>
-                                                <a
-                                                    href="#widget-category-1"
-                                                    data-toggle="collapse"
-                                                    role="button"
-                                                    aria-expanded="true"
-                                                    aria-controls="widget-category-1"
-                                                >
-                                                    Accessories
-                                                    <span className="products-count">(3)</span>
-                                                    <i className="fa-solid fa-chevron-down"></i>
-                                                </a>
-                                                <div className="collapse show" id="widget-category-1">
-                                                    <ul className="cat-sublist">
-                                                        <li>
-                                                            Caps<span className="products-count">(1)</span>
-                                                        </li>
-                                                        <li>
-                                                            Watches<span className="products-count">(2)</span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a
-                                                    href="#widget-category-2"
-                                                    className="collapsed"
-                                                    data-toggle="collapse"
-                                                    role="button"
-                                                    aria-expanded="false"
-                                                    aria-controls="widget-category-2"
-                                                >
-                                                    Dress<span className="products-count">(4)</span>
-                                                    <i className="fa-solid fa-chevron-down"></i>
-                                                </a>
-                                                <div className="collapse" id="widget-category-2">
-                                                    <ul className="cat-sublist">
-                                                        <li>
-                                                            Clothing<span className="products-count">(4)</span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a
-                                                    href="#widget-category-3"
-                                                    className="collapsed"
-                                                    data-toggle="collapse"
-                                                    role="button"
-                                                    aria-expanded="false"
-                                                    aria-controls="widget-category-3"
-                                                >
-                                                    Electronics<span className="products-count">(2)</span>
-                                                    <i className="fa-solid fa-chevron-down"></i>
-                                                </a>
-                                                <div className="collapse" id="widget-category-3">
-                                                    <ul className="cat-sublist">
-                                                        <li>
-                                                            Headphone<span className="products-count">(1)</span>
-                                                        </li>
-                                                        <li>
-                                                            Watch<span className="products-count">(1)</span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a
-                                                    href="#widget-category-4"
-                                                    className="collapsed"
-                                                    data-toggle="collapse"
-                                                    role="button"
-                                                    aria-expanded="false"
-                                                    aria-controls="widget-category-4"
-                                                >
-                                                    Fashion<span className="products-count">(6)</span>
-                                                    <i className="fa-solid fa-chevron-down"></i>
-                                                </a>
-                                                <div className="collapse" id="widget-category-4">
-                                                    <ul className="cat-sublist">
-                                                        <li>
-                                                            Shoes<span className="products-count">(4)</span>
-                                                        </li>
-                                                        <li>
-                                                            Bag<span className="products-count">(2)</span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="#">Music</a>
-                                                <span className="products-count">(2)</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div className="widget">
-                                <h3 className="widget-title">
-                                    <a
-                                        data-toggle="collapse"
-                                        href="#widget-body-3"
-                                        role="button"
-                                        aria-expanded="true"
-                                        aria-controls="widget-body-3"
-                                    >
-                                        Price
-                                    </a>
-                                </h3>
-                                <div className="collapse show" id="widget-body-3">
-                                    <div className="widget-body pb-0">
-                                        <form action="#">
-                                            <div className="price-slider-wrapper">
-                                                <div id="price-slider" />
-
-                                            </div>
-
-                                            <div className="filter-price-action d-flex align-items-center justify-content-between flex-wrap">
-                                                <div className="filter-price-text">
-                                                    Price:
-                                                    <span id="filter-price-range" />
-                                                </div>
-
-                                                <button type="submit" className="btn btn-primary">
-                                                    Filter
-                                                </button>
-                                            </div>
-
-                                        </form>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div className="widget widget-color">
-                                <h3 className="widget-title">
-                                    <a
-                                        data-toggle="collapse"
-                                        href="#widget-body-4"
-                                        role="button"
-                                        aria-expanded="true"
-                                        aria-controls="widget-body-4"
-                                    >
-                                        Color
-                                    </a>
-                                </h3>
-                                <div className="collapse show" id="widget-body-4">
-                                    <div className="widget-body pb-0">
-                                        <ul className="config-swatch-list">
-                                            <li className="active">
-                                                <a href="#" style={{ backgroundColor: "#000" }} />
-                                            </li>
-                                            <li>
-                                                <a href="#" style={{ backgroundColor: "#0188cc" }} />
-                                            </li>
-                                            <li>
-                                                <a href="#" style={{ backgroundColor: "#81d742" }} />
-                                            </li>
-                                            <li>
-                                                <a href="#" style={{ backgroundColor: "#6085a5" }} />
-                                            </li>
-                                            <li>
-                                                <a href="#" style={{ backgroundColor: "#ab6e6e" }} />
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div className="widget widget-size">
-                                <h3 className="widget-title">
-                                    <a
-                                        data-toggle="collapse"
-                                        href="#widget-body-5"
-                                        role="button"
-                                        aria-expanded="true"
-                                        aria-controls="widget-body-5"
-                                    >
-                                        Sizes
-                                    </a>
-                                </h3>
-                                <div className="collapse show" id="widget-body-5">
-                                    <div className="widget-body pb-0">
-                                        <ul className="config-size-list">
-                                            <li className="active">
-                                                <a href="#">XL</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">L</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">M</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">S</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                </div>
-
-                            </div>
 
 
-                            <div className="widget widget-block">
-                                <h3 className="widget-title">Custom HTML Block</h3>
-                                <h5>This is a custom sub-title.</h5>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non
-                                    placerat mi. Etiam non tellus{" "}
-                                </p>
-                            </div>
 
-                        </div>
-
-                    </aside>
 
                 </div>
 

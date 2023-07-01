@@ -1,4 +1,4 @@
-
+import logo from '../../assets/TechTopia2.png'
 const Footer = () => {
     return (
         <footer className="footer bg-dark position-relative">
@@ -11,7 +11,7 @@ const Footer = () => {
                                 <h4 className="widget-title">About Us</h4>
                                 <a href="demo1.html">
                                     <img
-                                        src="assets/images/logo-footer.png"
+                                        src={logo}
                                         alt="Logo"
                                         className="logo-footer"
                                     />
@@ -58,25 +58,22 @@ const Footer = () => {
                                         Mon - Sun / 9:00 AM - 8:00 PM
                                     </li>
                                 </ul>
-                                <div className="social-icons">
-                                    <a
-                                        href="#"
-                                        className="social-icon social-facebook icon-facebook"
-                                        target="_blank"
-                                        title="Facebook"
-                                    />
-                                    <a
-                                        href="#"
-                                        className="social-icon social-twitter icon-twitter"
-                                        target="_blank"
-                                        title="Twitter"
-                                    />
-                                    <a
-                                        href="#"
-                                        className="social-icon social-linkedin fab fa-linkedin-in"
-                                        target="_blank"
-                                        title="Linkedin"
-                                    />
+                                <div className="social-icons mr-2">
+                                    <a href="#" className="social-icon social-facebook">
+                                        <i className="fab fa-facebook" title="Facebook"></i>
+                                    </a>
+                                    <a href="#" className="social-icon social-twitter">
+                                        <i className="fab fa-twitter" title="Twitter"></i>
+                                    </a>
+                                    <a href="#" className="social-icon social-linkedin">
+                                        <i className="fab fa-linkedin-in" title="LinkedIn"></i>
+                                    </a>
+                                    <a href="#" className="social-icon social-gplus">
+                                        <i className="fab fa-google-plus-g" title="Google+"></i>
+                                    </a>
+                                    <a href="#" className="social-icon social-mail">
+                                        <i className="far fa-envelope" title="Mail"></i>
+                                    </a>
                                 </div>
 
                             </div>
@@ -153,30 +150,31 @@ const Footer = () => {
                 <div className="footer-bottom d-sm-flex align-items-center">
                     <div className="footer-left">
                         <span className="footer-copyright">
-                            © Porto eCommerce. 2021. All Rights Reserved
+                            © React eCommerce. 2023. All Rights Reserved
                         </span>
                     </div>
                     <div className="footer-right ml-auto mt-1 mt-sm-0">
-                        <div className="payment-icons">
+                        <img className="payment-icons" src="https://internationalclubdhaka.org/wp-content/uploads/2020/06/sslcommerz-pay-with-logo-all-size-01-1.png" alt="" width={'400px'}/>
+                        {/* <div className="payment-icons">
                             <span
                                 className="payment-icon visa"
                                 style={{
                                     backgroundImage:
-                                        "url(assets/images/payments/payment-visa.svg)"
+                                        "url(https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Stripe_Logo%2C_revised_2016.svg/2560px-Stripe_Logo%2C_revised_2016.svg.png)"
                                 }}
                             />
                             <span
                                 className="payment-icon paypal"
                                 style={{
                                     backgroundImage:
-                                        "url(assets/images/payments/payment-paypal.svg)"
+                                        "url(https://seeklogo.com/images/B/bkash-logo-FBB258B90F-seeklogo.com.png)"
                                 }}
                             />
                             <span
                                 className="payment-icon stripe"
                                 style={{
                                     backgroundImage:
-                                        "url(assets/images/payments/payment-stripe.png)"
+                                        "url(https://seeklogo.com/images/N/nagad-logo-7A70CCFEE0-seeklogo.com.png)"
                                 }}
                             />
                             <span
@@ -186,7 +184,7 @@ const Footer = () => {
                                         "url(assets/images/payments/payment-verisign.svg)"
                                 }}
                             />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

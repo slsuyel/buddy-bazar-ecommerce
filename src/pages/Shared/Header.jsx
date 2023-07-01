@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import CartSideBar from "../Product/CartSideBar";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProviders";
-
+import logo from '../../assets/TechTopia.png'
 const Header = () => {
   const { logOut, user } = useContext(AuthContext);
 
@@ -19,39 +19,33 @@ const Header = () => {
           <div className="container">
             <div className="header-right header-dropdowns ml-0 ml-sm-auto">
               <p className="top-message mb-0 d-none d-sm-block">
-                Welcome To Porto!
+                Welcome To TechTopia!
               </p>
               <div className="header-dropdown dropdown-expanded mr-3">
                 <a href="#">Links</a>
                 <div className="header-menu">
+
+
                   <ul>
                     <li>
-                      <Link to="/dashboard">My Account</Link>
+                      <Link to="/dashboard" className="text-decoration-none">My Account</Link>
                     </li>
                     <li>
-                      <a href="demo1-contact.html">Contact Us</a>
+                      <Link to="/demo1-contact.html" className="text-decoration-none">Contact Us</Link>
                     </li>
                     <li>
-                      <a href="">My Wishlist</a>
+                      <Link to="/wishlist" className="text-decoration-none">My Wishlist</Link>
+                    </li>
+                  
+                    <li>
+                      <Link to="/cart" className="text-decoration-none">Cart</Link>
                     </li>
                     <li>
-                      <a href="#">Site Map</a>
-                    </li>
-                    <li>
-
-                      <Link to='cart'>Cart</Link>
-                    </li>
-                    <li>
-
-                      {
-                        !user ? <Link to='/login' className="">
-                          Log In
-                        </Link> : <Link onClick={logoutBtn}>
-                          Log Out
-                        </Link>
-                      }
-
-
+                      {!user ? (
+                        <Link to="/login" className="text-decoration-none">Log In</Link>
+                      ) : (
+                        <Link onClick={logoutBtn} className="text-decoration-none">Log Out</Link>
+                      )}
                     </li>
                   </ul>
                 </div>
@@ -74,12 +68,38 @@ const Header = () => {
         <div className="header-middle text-dark sticky-header">
           <div className="container">
             <div className="header-left col-lg-2 w-auto pl-0">
-              <button className="mobile-menu-toggler mr-2" type="button">
-                <i className="fas fa-bars"></i>
-              </button>
+              {/* Mobile toggle menu is here */}
+              <div className="dropdown d-lg-none">
+                <button
+                  className="btn dropdown-toggle"
+                  type="button"
+                  id="mobileToggleMenu"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i className="fa-bars fa-solid mb-3 me-1"></i>
+                </button>
+                <div className="dropdown-menu fs-2" aria-labelledby="mobileToggleMenu">
+                  <Link className="dropdown-item" to="/">Home</Link>
+                  <Link className="dropdown-item" to="/products">Products</Link>
+                  <Link className="dropdown-item" to="/dashboard">Dashboard</Link>
+                  <Link className="dropdown-item" to="/contact">Contact</Link>
+
+                  <div className="border-top d-flex justify-content-around my-3 pt-3">
+                    <i className="btn fs-1 fab fa-facebook" style={{ color: "#3b5998" }}></i>
+                    <i className="btn fs-1 fab fa-twitter" style={{ color: "#00acee" }}></i>
+                    <i className="btn fs-1 fab fa-instagram" style={{ color: "#E4405F" }}></i>
+                  </div>
+
+
+                </div>
+              </div>
               <Link to="/" className="logo">
-                <img src="https://www.portotheme.com/wordpress/porto/shop1-soft/wp-content/uploads/sites/127/2022/08/Logo.png" width="111" height="44" alt="Porto Logo" />
+                <img src={logo} width="121" height="44" alt="Porto Logo" />
               </Link>
+
+
 
 
             </div>
@@ -91,28 +111,7 @@ const Header = () => {
                 <form action="#" method="get">
                   <div className="header-search-wrapper">
                     <input type="search" className="form-control" name="q" id="q" placeholder="Search..." required="" />
-                    <div className="select-custom">
-                      <select id="cat" name="cat" >
-                        <i className="fa-solid fa-chevron-down"></i>
-                        <option value="" >All Categories</option>
-                        <option value="4">Fashion</option>
-                        <option value="12">- Women</option>
-                        <option value="13">- Men</option>
-                        <option value="66">- Jewellery</option>
-                        <option value="67">- Kids Fashion</option>
-                        <option value="5">Electronics</option>
-                        <option value="21">- Smart TVs</option>
-                        <option value="22">- Cameras</option>
-                        <option value="63">- Games</option>
-                        <option value="7">Home &amp; Garden</option>
-                        <option value="11">Motors</option>
-                        <option value="31">- Cars and Trucks</option>
-                        <option value="32">- Motorcycles &amp; Powersports</option>
-                        <option value="33">- Parts &amp; Accessories</option>
-                        <option value="34">- Boats</option>
-                        <option value="57">- Auto Tools &amp; Supplies</option>
-                      </select>
-                    </div>
+                    
                     <button className="bg-white border-0 fa-magnifying-glass fa-solid fs-3" ></button>
                   </div>
 
