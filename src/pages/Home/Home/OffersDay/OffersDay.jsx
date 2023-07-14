@@ -21,7 +21,7 @@ const OffersDay = () => {
     useEffect(() => {
         const mostDiscounted = allProducts.sort((a, b) => b.discounts - a.discounts);
         setData(mostDiscounted);
-    }, [allProducts]);
+    }, []);
 
     return (
         <div className=" d-none d-md-block">

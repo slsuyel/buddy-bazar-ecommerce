@@ -54,10 +54,10 @@ const Register = () => {
     };
 
     return (
-        <div className='row mx-auto'>
+        <div className='row mx-auto container'>
             <h2 className='text-center mb-5'>Registration Page</h2>
             <div className='col-md-6'>
-                <img src="https://i.gifer.com/X0XF.gif" alt="" className='w-100' />
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2EU5ufwbPcnUI0ZqZ-maegvAi-59dIBiybuo16bdFNPnrUk67yMNIcXg4eHUWr5a-BOk&usqp=CAU" alt="" className='w-100' />
             </div>
             <div className="col-md-6">
                 <form className="needs-validation" onSubmit={handleSubmit(onSubmit)}>
@@ -65,7 +65,7 @@ const Register = () => {
                         <label htmlFor="name">Name:</label>
                         <input
                             type="text"
-                            className="form-control"
+                            className="form-control fs-2"
                             id="name"
                             {...register('name', { required: true })}
                         />
@@ -75,7 +75,7 @@ const Register = () => {
                         <label htmlFor="email">Email:</label>
                         <input
                             type="email"
-                            className="form-control"
+                            className="form-control fs-2"
                             id="email"
                             {...register('email', { required: true })}
                         />
@@ -85,7 +85,7 @@ const Register = () => {
                         <label htmlFor="password">Password:</label>
                         <input
                             type="password"
-                            className="form-control"
+                            className="form-control fs-2"
                             id="password"
                             {...register('password', { required: true, minLength: 6 })}
                         />
@@ -100,7 +100,7 @@ const Register = () => {
                         <label htmlFor="confirmPassword">Confirm Password:</label>
                         <input
                             type="password"
-                            className="form-control"
+                            className="form-control fs-2"
                             id="confirmPassword"
                             {...register('confirmPassword', {
                                 required: true,
@@ -119,17 +119,17 @@ const Register = () => {
                         <label htmlFor="photoUrl">Photo URL:</label>
                         <input
                             type="text"
-                            className="form-control"
+                            className="form-control fs-2"
                             id="photoURL"
                             {...register('photoURL', { required: true })}
                         />
-                        {errors.photoUrl && <span className="text-danger">Photo URL is required</span>}
+                        {errors.photoUrl && <span className="text-danger fs-4">Photo URL is required</span>}
                     </div>
-                    <div className="form-group">
+                    <div className="form-group fs-2">
                         <p className='text-danger'>{error}</p>
                         <Link to="/login">Already have an account</Link>
                     </div>
-                    <button type="submit" className="btn btn-primary my-2">Register</button>
+                    <button type="submit" className="btn btn-primary my-2 fs-3">Register</button>
                 </form>
 
             </div>

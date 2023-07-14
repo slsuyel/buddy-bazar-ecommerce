@@ -11,6 +11,7 @@ import Login from "../pages/Shared/Login/Login";
 import Register from "../pages/Shared/Register/Register";
 import PrivateRoute from "./PrivateRoute";
 import Payment from "../pages/payment/StripePayment/Payment";
+import { baseUrl } from "../baseUrl/baseUrl";
 
 export const router = createBrowserRouter([
   {
@@ -54,7 +55,7 @@ export const router = createBrowserRouter([
       {
         path: '/categories/:category',
         element: <Category />,
-        loader: ({ params }) => fetch(`http://localhost:5000/categories/${params.category}`)
+        loader: ({ params }) => fetch(`${baseUrl}/categories/${params.category}`)
       }
     ],
   },
